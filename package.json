@@ -23,6 +23,7 @@
     "dependencies": {
       "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.23.0",
       "color": "npm:color@^1.0.3",
+      "qs": "npm:qs@^6.4.0",
       "react-dom": "npm:react-dom@^15.4.2",
       "systemjs-hot-reloader": "github:alexisvincent/systemjs-hot-reloader@^0.6.0",
       "whatwg-fetch": "npm:whatwg-fetch@^2.0.2"

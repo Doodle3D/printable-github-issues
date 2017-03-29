@@ -45,3 +45,12 @@ a:hover {
   box-shadow: inset 0 -1px 0 rgba(0,0,0,0.12);
   margin: 0 0 0 4px;
 }
+
+.markdown-style {
+  font-size: 12px;
+}
+.markdown-style .issue {
+  padding: 0;
+  min-height: auto;
+  border: none;
+}
