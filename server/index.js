@@ -8,11 +8,12 @@ const { ISSUES_OWNER, ISSUES_REPO, GITHUB_USER, GITHUB_TOKEN } = process.env;
 
 const PER_PAGE = 100; // max of github api is 100
 
-const BASE_URL = `https://api.github.com/repos/${ISSUES_OWNER}/${ISSUES_REPO}/issues?per_page=${PER_PAGE}&state=open&sort=created&direction=asc`;
+const BASE_URL = `https://api.github.com/repos/${ISSUES_OWNER}/${ISSUES_REPO}/issues`;
+
+// const BASE_QUERY = `per_page=${PER_PAGE}&sort=updated&direction=asc`;
+const BASE_QUERY = `per_page=${PER_PAGE}&sort=created&direction=desc`;
 
 const app = express();
-
-
 
 // check NODE_ENV environment variable
 console.log('env: ', app.get('env'));
@@ -30,26 +31,27 @@ app.get('/data/issues.:ext', (req, res) => {
   if (ext !== 'json') {
     return res.status(404).send('Only supports json format requests');
   }
+  const { state } = req.query;
 
-  loadAllIssues().then(data => {
+  loadAllIssues(state).then(data => {
     console.log('total results: ', data.length);
     return res.json(data);
   }).catch(err => {
     console.log('err: ', err);
     return res.status(500).send(err.message)
   });
-
-
 });
 
 // Using github API v3 to retrieve issues
 // https://developer.github.com/v3/issues/
-function loadAllIssues() {
+function loadAllIssues(state) {
+  console.log('loadAllIssues state: ', state);
   return new Promise((resolve, reject) => {
     let allIssues = [];
     function loadPage(page) {
       console.log('load page ', page);
-      const url = `${BASE_URL}&page=${page}`;
+      const stateQuery = `&state=${state? state : 'all'}`;
+      const url = `${BASE_URL}?${BASE_QUERY}&page=${page}${stateQuery}`;
       console.log('  requesting issues using url: ', url);
       const  headers = {};
       if (GITHUB_USER) {

@@ -54,3 +54,7 @@ a:hover {
   min-height: auto;
   border: none;
 }
+
+.milestone {
+  font-size: 12px;
+}

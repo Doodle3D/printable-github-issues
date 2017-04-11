@@ -1,8 +1,11 @@
 import 'whatwg-fetch';
 
-function loadData() {
+export function getIssues(state='open') {
+  return loadIssues(state);
+}
 
-  return fetch(`/data/issues.json`)
+function loadIssues(state) {
+  return fetch(`/data/issues.json?state=${state}`)
   .then(response => {
     if (!response.ok) { // error response
       return response.text() // parse error text
@@ -15,6 +18,65 @@ function loadData() {
   });
 }
 
-export function getData() {
-  return loadData();
+export function getMilestonesData() {
+  return getIssues('all').
+    then(convertToMilestones).
+    then(addSizes);
+}
+function convertToMilestones(issues) {
+  // console.log('convertToMilestones issues: ', issues);
+  const milestones = {};
+  for (const issue of issues) {
+    // ignore issues without milestones
+    if (!issue.milestone) continue;
+    // ignore issues of milestones that are not open
+    if(issue.milestone.state !== 'open') continue;
+    const { id } = issue.milestone;
+    if (milestones[id] === undefined) {
+      milestones[id] = createMilestone(issue.milestone);
+    }
+    milestones[id].issues.push(issue);
+  }
+  return milestones;
+}
+function createMilestone(info) {
+  return {
+    ...info,
+    issues: [],
+  }
+}
+
+function addSizes(rawMilestones) {
+  const milestones = { ...rawMilestones }
+  for (const id in milestones) {
+    const milestone = milestones[id];
+    milestone.openSize = 0;
+    milestone.totalSize = 0;
+    for (const issue of milestone.issues) {
+      const size = getSize(issue);
+      if (size) {
+        milestone.totalSize += size;
+        const stateLabel = getStateLabel(issue);
+        if(issue.state === 'open' && stateLabel !== 'Check') {
+          milestone.openSize += size;
+        }
+      }
+    }
+  }
+  return milestones;
+}
+function getSize(issue) {
+  for (const label of issue.labels) {
+    const matches = label.name.match(/size:(\d+)/);
+    if(!matches) continue;
+    return parseInt(matches[1]);
+  }
+  return null;
+}
+const stateLabels = ['Discuss', 'ToDo', 'Doing', 'Check']
+function getStateLabel(issue) {
+  for (const label of issue.labels) {
+    if (stateLabels.includes(label.name)) return label.name;
+  }
+  return null;
 }
