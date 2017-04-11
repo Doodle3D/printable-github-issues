@@ -23,6 +23,7 @@ export function getMilestonesData() {
     then(convertToMilestones).
     then(addSizes);
 }
+// convert issues into milestones with issues
 function convertToMilestones(issues) {
   // console.log('convertToMilestones issues: ', issues);
   const milestones = {};
@@ -46,6 +47,7 @@ function createMilestone(info) {
   }
 }
 
+// add sizes to milestones according to 'size:...' labels
 function addSizes(rawMilestones) {
   const milestones = { ...rawMilestones }
   for (const id in milestones) {
@@ -57,6 +59,7 @@ function addSizes(rawMilestones) {
       if (size) {
         milestone.totalSize += size;
         const stateLabel = getStateLabel(issue);
+        // I consider issues open when they're open and not in the check phase
         if(issue.state === 'open' && stateLabel !== 'Check') {
           milestone.openSize += size;
         }
@@ -65,6 +68,7 @@ function addSizes(rawMilestones) {
   }
   return milestones;
 }
+// retrieve size from issue according to 'size:...' label
 function getSize(issue) {
   for (const label of issue.labels) {
     const matches = label.name.match(/size:(\d+)/);
