@@ -56,13 +56,14 @@ SystemJS.config({
     "qs": "npm:qs@6.4.0",
     "react": "npm:react@15.4.2",
     "react-dom": "npm:react-dom@15.4.2",
+    "react-router": "npm:react-router@2.8.1",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
     "systemjs-hot-reloader": "github:alexisvincent/systemjs-hot-reloader@0.6.0",
     "url": "npm:jspm-nodelibs-url@0.2.0",
     "util": "npm:jspm-nodelibs-util@0.2.1",
     "vm": "npm:jspm-nodelibs-vm@0.2.0",
-    "whatwg-fetch": "npm:whatwg-fetch@2.0.2",
+    "whatwg-fetch": "npm:whatwg-fetch@2.0.3",
     "zlib": "npm:jspm-nodelibs-zlib@0.2.2"
   },
   packages: {
@@ -118,7 +119,7 @@ SystemJS.config({
       "map": {
         "loose-envify": "npm:loose-envify@1.3.1",
         "object-assign": "npm:object-assign@4.1.1",
-        "fbjs": "npm:fbjs@0.8.9"
+        "fbjs": "npm:fbjs@0.8.12"
       }
     },
     "npm:fbjs@0.8.9": {
@@ -140,7 +141,7 @@ SystemJS.config({
     "npm:isomorphic-fetch@2.2.1": {
       "map": {
         "node-fetch": "npm:node-fetch@1.6.3",
-        "whatwg-fetch": "npm:whatwg-fetch@2.0.2"
+        "whatwg-fetch": "npm:whatwg-fetch@2.0.3"
       }
     },
     "npm:promise@7.1.1": {
@@ -162,23 +163,12 @@ SystemJS.config({
     "npm:stream-browserify@2.0.1": {
       "map": {
         "inherits": "npm:inherits@2.0.3",
-        "readable-stream": "npm:readable-stream@2.2.6"
+        "readable-stream": "npm:readable-stream@2.2.9"
       }
     },
     "npm:jspm-nodelibs-http@0.2.0": {
       "map": {
-        "http-browserify": "npm:stream-http@2.6.3"
-      }
-    },
-    "npm:readable-stream@2.2.3": {
-      "map": {
-        "inherits": "npm:inherits@2.0.3",
-        "process-nextick-args": "npm:process-nextick-args@1.0.7",
-        "core-util-is": "npm:core-util-is@1.0.2",
-        "string_decoder": "npm:string_decoder@0.10.31",
-        "buffer-shims": "npm:buffer-shims@1.0.0",
-        "isarray": "npm:isarray@1.0.0",
-        "util-deprecate": "npm:util-deprecate@1.0.2"
+        "http-browserify": "npm:stream-http@2.7.0"
       }
     },
     "npm:jspm-nodelibs-buffer@0.2.1": {
@@ -208,15 +198,6 @@ SystemJS.config({
         "base64-js": "npm:base64-js@1.2.0"
       }
     },
-    "npm:stream-http@2.6.3": {
-      "map": {
-        "inherits": "npm:inherits@2.0.3",
-        "readable-stream": "npm:readable-stream@2.2.3",
-        "to-arraybuffer": "npm:to-arraybuffer@1.0.1",
-        "builtin-status-codes": "npm:builtin-status-codes@3.0.0",
-        "xtend": "npm:xtend@4.0.1"
-      }
-    },
     "npm:jspm-nodelibs-url@0.2.0": {
       "map": {
         "url-browserify": "npm:url@0.11.0"
@@ -224,7 +205,7 @@ SystemJS.config({
     },
     "npm:browserify-zlib@0.1.4": {
       "map": {
-        "readable-stream": "npm:readable-stream@2.2.3",
+        "readable-stream": "npm:readable-stream@2.2.9",
         "pako": "npm:pako@0.2.9"
       }
     },
@@ -411,7 +392,7 @@ SystemJS.config({
         "bn.js": "npm:bn.js@4.11.6",
         "minimalistic-crypto-utils": "npm:minimalistic-crypto-utils@1.0.1",
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0",
-        "hmac-drbg": "npm:hmac-drbg@1.0.0",
+        "hmac-drbg": "npm:hmac-drbg@1.0.1",
         "hash.js": "npm:hash.js@1.0.3",
         "brorand": "npm:brorand@1.1.0"
       }
@@ -425,22 +406,84 @@ SystemJS.config({
         "asn1.js": "npm:asn1.js@4.9.1"
       }
     },
-    "npm:hmac-drbg@1.0.0": {
+    "npm:invariant@2.2.2": {
       "map": {
-        "hash.js": "npm:hash.js@1.0.3",
-        "minimalistic-crypto-utils": "npm:minimalistic-crypto-utils@1.0.1",
-        "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
+        "loose-envify": "npm:loose-envify@1.3.1"
       }
     },
-    "npm:readable-stream@2.2.6": {
+    "npm:warning@3.0.0": {
+      "map": {
+        "loose-envify": "npm:loose-envify@1.3.1"
+      }
+    },
+    "npm:fbjs@0.8.12": {
+      "map": {
+        "loose-envify": "npm:loose-envify@1.3.1",
+        "object-assign": "npm:object-assign@4.1.1",
+        "setimmediate": "npm:setimmediate@1.0.5",
+        "core-js": "npm:core-js@1.2.7",
+        "isomorphic-fetch": "npm:isomorphic-fetch@2.2.1",
+        "promise": "npm:promise@7.1.1",
+        "ua-parser-js": "npm:ua-parser-js@0.7.12"
+      }
+    },
+    "npm:readable-stream@2.2.9": {
       "map": {
         "isarray": "npm:isarray@1.0.0",
         "inherits": "npm:inherits@2.0.3",
-        "string_decoder": "npm:string_decoder@0.10.31",
+        "string_decoder": "npm:string_decoder@1.0.0",
         "buffer-shims": "npm:buffer-shims@1.0.0",
-        "process-nextick-args": "npm:process-nextick-args@1.0.7",
         "core-util-is": "npm:core-util-is@1.0.2",
+        "process-nextick-args": "npm:process-nextick-args@1.0.7",
         "util-deprecate": "npm:util-deprecate@1.0.2"
+      }
+    },
+    "npm:string_decoder@1.0.0": {
+      "map": {
+        "buffer-shims": "npm:buffer-shims@1.0.0"
+      }
+    },
+    "npm:stream-http@2.7.0": {
+      "map": {
+        "inherits": "npm:inherits@2.0.3",
+        "readable-stream": "npm:readable-stream@2.2.9",
+        "builtin-status-codes": "npm:builtin-status-codes@3.0.0",
+        "to-arraybuffer": "npm:to-arraybuffer@1.0.1",
+        "xtend": "npm:xtend@4.0.1"
+      }
+    },
+    "npm:hmac-drbg@1.0.1": {
+      "map": {
+        "hash.js": "npm:hash.js@1.0.3",
+        "minimalistic-assert": "npm:minimalistic-assert@1.0.0",
+        "minimalistic-crypto-utils": "npm:minimalistic-crypto-utils@1.0.1"
+      }
+    },
+    "npm:react-router@2.8.1": {
+      "map": {
+        "hoist-non-react-statics": "npm:hoist-non-react-statics@1.2.0",
+        "history": "npm:history@2.1.2",
+        "invariant": "npm:invariant@2.2.2",
+        "warning": "npm:warning@3.0.0",
+        "loose-envify": "npm:loose-envify@1.3.1"
+      }
+    },
+    "npm:history@2.1.2": {
+      "map": {
+        "warning": "npm:warning@2.1.0",
+        "invariant": "npm:invariant@2.2.2",
+        "deep-equal": "npm:deep-equal@1.0.1",
+        "query-string": "npm:query-string@3.0.3"
+      }
+    },
+    "npm:warning@2.1.0": {
+      "map": {
+        "loose-envify": "npm:loose-envify@1.3.1"
+      }
+    },
+    "npm:query-string@3.0.3": {
+      "map": {
+        "strict-uri-encode": "npm:strict-uri-encode@1.1.0"
       }
     }
   }
